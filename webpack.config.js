@@ -12,7 +12,7 @@ module.exports = {
   target: 'web',
 
   entry: {
-    main: './src/main.js'
+    main: './src/App.tsx'
   },
 
   devServer: {
@@ -39,7 +39,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.[jt]sx?$/,
         exclude: /node_modules/,
         use: [{
           loader: 'typescript-loader'
