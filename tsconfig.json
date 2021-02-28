@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
+    "outDir": "./out",
     "jsx": "react",
-    "sourceMap": true
-  }
+    "target": "es5",
+    "sourceMap": true,
+    "allowJs": true,
+    "removeComments": true,
+  },
+  "include": ["**/*", "./**/*.d.ts"],
+  "exclude": ["**/dist/**"]
 }

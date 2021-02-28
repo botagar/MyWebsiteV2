@@ -1,5 +1,4 @@
 module.exports = {
-    presets: ['@babel/preset-typescript'],
-    plugins: [ ],
-  }
-  
+  presets: ['@babel/preset-react', '@babel/preset-typescript'],
+  plugins: [],
+}

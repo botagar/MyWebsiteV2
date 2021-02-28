@@ -1,10 +1,13 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ReactRefreshBabel = require('react-refresh/babel')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const path = require('path')
 
 const DIST = path.resolve(__dirname, 'dist')
 const ENV = process.env.NODE_ENV || 'development'
+const isDev = ENV === 'development'
 
 module.exports = {
   mode: ENV,
@@ -12,14 +15,20 @@ module.exports = {
   target: 'web',
 
   entry: {
-    main: './src/App.tsx'
+    main: [
+      './src/main.jsx'
+    ],
   },
 
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    static: [
+      path.resolve(__dirname, 'dist'),
+    ],
     compress: true,
     port: 9000,
-    hot: true
+    hot: true,
+    open: 'firefox',
+    host: 'localhost',
   },
 
   output: {
@@ -27,13 +36,13 @@ module.exports = {
     publicPath: 'auto',
     filename: '[name].bundle.[hash:8].js',
     chunkFilename: '[name].bundle.[contenthash:8].js',
-    sourceMapFilename: '[file].map'
+    sourceMapFilename: '[file].map',
   },
 
   resolve: {
     // https://webpack.js.org/configuration/resolve/
-    extensions: ['.js', '.ts', '.json', '.tsx'],
-    alias: {}
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    alias: {},
   },
 
   module: {
@@ -41,20 +50,31 @@ module.exports = {
       {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
-        use: [{
-          loader: 'typescript-loader'
-        }]
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              plugins: [
+                isDev && ReactRefreshBabel
+              ].filter(Boolean)
+            }
+          },
+          // {
+          //   loader: 'ts-loader'
+          // }
+        ]
       }
     ]
   },
 
   plugins: [
     new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.ids.HashedModuleIdsPlugin(),
+    isDev && new webpack.HotModuleReplacementPlugin(),
+    isDev && new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({    
       template: path.resolve(__dirname, './src/index.html'),     
       filename: 'index.html',
     }),  
-  ],
+  ].filter(Boolean),
 }
