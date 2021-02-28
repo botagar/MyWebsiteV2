@@ -59,9 +59,6 @@ module.exports = {
               ].filter(Boolean)
             }
           },
-          // {
-          //   loader: 'ts-loader'
-          // }
         ]
       }
     ]
