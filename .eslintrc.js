@@ -1,6 +1,10 @@
 module.exports = {
     root: true,
     parser: '@typescript-eslint/parser',
+    env: {
+        "browser": true,
+        "node": true,
+    },
     plugins: [
         '@typescript-eslint',
     ],
@@ -10,6 +14,11 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
     ],
     rules: {
-        "no-console": 1
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "no-console": 1,
+        "object-curly-spacing": ["error", "always"],
+        "indent": ["error", 2],
+        "no-multi-spaces": ["error"],
+        "array-bracket-spacing": ["error"],
     },
 };

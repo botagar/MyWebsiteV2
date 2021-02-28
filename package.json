@@ -15,6 +15,7 @@
         "build": "webpack --profile",
         "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
         "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+        "prettier-format": "prettier --config .prettierrc './src/**/*.tsx' --write",
         "serve": "webpack serve",
         "test": "echo \"no tests yet\" && exit 1"
     },
@@ -36,6 +37,7 @@
         "clean-webpack-plugin": "^3.0.0",
         "eslint": "^7.21.0",
         "html-webpack-plugin": "^5.2.0",
+        "prettier": "^2.2.1",
         "react-refresh": "^0.9.0",
         "ts-loader": "^8.0.17",
         "type-fest": "^0.21.2",

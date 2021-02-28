@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react';
 
-const App = () => (
-  <div><h1>Hello World</h1></div>
-)
+const App: FC = () => (
+  <div>
+    <h1>Hello World</h1>
+  </div>
+);
 
-export default App
+export default App;
