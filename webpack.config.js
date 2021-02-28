@@ -68,7 +68,11 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.ids.HashedModuleIdsPlugin(),
     isDev && new webpack.HotModuleReplacementPlugin(),
-    isDev && new ReactRefreshWebpackPlugin(),
+    isDev && new ReactRefreshWebpackPlugin({
+      overlay: {
+        sockIntegration: 'wds'
+      }
+    }),
     new HtmlWebpackPlugin({    
       template: path.resolve(__dirname, './src/index.html'),     
       filename: 'index.html',
