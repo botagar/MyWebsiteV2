@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  my_website_v2:
+    container_name: my-website-v2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '1337:80'
