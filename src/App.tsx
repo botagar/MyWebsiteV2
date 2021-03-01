@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components'
 
 const App: FC = () => (
