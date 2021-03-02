@@ -34,7 +34,7 @@ module.exports = {
   output: {
     path: DIST,
     publicPath: 'auto',
-    filename: '[name].bundle.[hash:8].js',
+    filename: '[name].bundle.[fullhash:8].js',
     chunkFilename: '[name].bundle.[contenthash:8].js',
     sourceMapFilename: '[file].map',
   },
