@@ -36,8 +36,8 @@ jobs:
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
           docker build -t my-website-v2:$TAG .
-          # echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-          docker push my-website-v2:$TAG
+          echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+          docker push botagar/my-website-v2:$TAG
 
 workflows:
   node-tests:
