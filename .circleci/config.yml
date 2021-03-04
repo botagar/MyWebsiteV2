@@ -45,7 +45,9 @@ jobs:
 workflows:
   node-tests:
     jobs:
-      - build-app
+      - build-app:
+          context:
+            - Docker
   docker:
     jobs:
       - build-docker
