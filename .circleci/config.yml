@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@4.2.0
+  ansible-playbook: orbss/ansible-playbook@0.0.5
 
 jobs:
   build-app:
@@ -36,7 +37,21 @@ jobs:
           echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
           docker push $DOCKER_USER/my-website-v2:$TAG
 
+  create-infra:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - ansible-playbook/install:
+          version: 2.10.6
+      - ansible-playbook/playbook:
+          playbook: infra/aws/ansible/infra-create.yml
+          playbook-options: -e project=my-website -e env=dev --check
+
 workflows:
+  infra:
+    jobs:
+      - create-infra
   node-tests:
     jobs:
       - build-app
