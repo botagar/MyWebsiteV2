@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   node: circleci/node@4.2.0
-  ansible-playbook: orbss/ansible-playbook@0.0.5
 
 jobs:
   build-app:
@@ -39,14 +38,10 @@ jobs:
 
   create-infra:
     docker:
-      - image: cimg/base:stable
+      - image: ansible/ansible-runner
     steps:
       - checkout
-      - ansible-playbook/install:
-          version: 2.10.6
-      - ansible-playbook/playbook:
-          playbook: infra/aws/ansible/infra-create.yml
-          playbook-options: -e project=my-website -e env=dev --check
+      - run: ./infra/aws/control.sh -a create -p my-website -e dev
 
 workflows:
   infra:
