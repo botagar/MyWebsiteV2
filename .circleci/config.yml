@@ -43,6 +43,9 @@ jobs:
     steps:
       - checkout:
           path: $CIRCLE_WORKING_DIRECTORY
+      - run: pwd
+      - run: ls -l
+      - run: echo $CIRCLE_WORKING_DIRECTORY
       - run: control.sh -a create -p my-website -e dev
 
 workflows:
