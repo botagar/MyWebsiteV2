@@ -47,7 +47,6 @@ jobs:
       - run: ls -l infra/aws
       - run: ls -l infra/aws/control.sh
       - run: cat infra/aws/control.sh
-      - run: bash --version
       - run: 'infra/aws/control.sh -a create -p my-website -e dev'
 
 workflows:
