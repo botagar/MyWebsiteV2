@@ -38,7 +38,7 @@ jobs:
 
   create-infra:
     docker:
-      - image: ansible/ansible-runner
+      - image: botagar/ansible-aws-cli:0.1.1
     steps:
       - checkout
       - run: ./infra/aws/control.sh -a create -p my-website -e dev
