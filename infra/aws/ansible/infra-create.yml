@@ -12,7 +12,7 @@
         state: present
         region: ap-southeast-2
         disable_rollback: false
-        template: '../templates/Networking.yml'
+        template: '../cfn/network.yml'
         template_parameters:
           ProjectName: '{{ ProjectName }}'
           Environment: '{{ Environment }}'
@@ -38,7 +38,7 @@
         state: present
         region: ap-southeast-2
         disable_rollback: false
-        template: '../templates/ElasticFileSystem.yml'
+        template: '../cfn/efs.yml'
         template_parameters:
           ProjectName: '{{ ProjectName }}'
           Environment: '{{ Environment }}'
@@ -56,7 +56,7 @@
         state: present
         region: ap-southeast-2
         disable_rollback: false
-        template: '../templates/EKS.yml'
+        template: '../cfn/eks.yml'
         template_parameters:
           ProjectName: '{{ ProjectName }}'
           Environment: '{{ Environment }}'
