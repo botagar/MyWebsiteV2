@@ -1,7 +1,6 @@
 ---
 - name: Eks Stack for MyWebsite
   hosts: localhost
-  ansible_connection: local
   gather_facts: no
   vars:
     ProjectName: "{{ project | default('my-website-v2') }}"
