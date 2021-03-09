@@ -45,8 +45,8 @@ jobs:
           path: ~/project
       - run: pwd
       - run: ls -l
-      - run: echo $CIRCLE_WORKING_DIRECTORY
-      - run: control.sh -a create -p my-website -e dev
+      - run: cat control.sh
+      - run: sh control.sh -a create -p my-website -e dev
 
 workflows:
   infra:
