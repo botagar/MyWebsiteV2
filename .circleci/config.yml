@@ -51,7 +51,9 @@ jobs:
 workflows:
   infra:
     jobs:
-      - create-infra
+      - create-infra:
+          context:
+            - AWS
   # node-tests:
   #   jobs:
   #     - build-app
