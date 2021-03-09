@@ -37,12 +37,12 @@ jobs:
           docker push $DOCKER_USER/my-website-v2:$TAG
 
   create-infra:
-    working_directory: $CIRCLE_WORKING_DIRECTORY/infra/aws
+    working_directory: ~/project/infra/aws
     docker:
       - image: botagar/ansible-aws-cli:0.1.2
     steps:
       - checkout:
-          path: $CIRCLE_WORKING_DIRECTORY
+          path: ~/project
       - run: control.sh -a create -p my-website -e dev
 
 workflows:
