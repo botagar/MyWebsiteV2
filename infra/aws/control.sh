@@ -65,11 +65,11 @@ done
 case $action in
     "create" )
         echo Creating project $project in environment $env
-        ansible-playbook ansible/infra-create.yml -e project=$project -e env=$env --check
+        ansible-playbook ansible/infra-create.yml -e project=$project -e env=$env --check -vv
         ;;
     "destroy" )
         echo Destroying project $project in environment $env
-        ansible-playbook ansible/infra-destroy.yml -e project=$project -e env=$env --check
+        ansible-playbook ansible/infra-destroy.yml -e project=$project -e env=$env --check -vv
         ;;
     * )
         echo Unknown action
