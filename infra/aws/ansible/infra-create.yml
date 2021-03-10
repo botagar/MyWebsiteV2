@@ -27,6 +27,7 @@
     - name: Get networking stack information
       cloudformation_info:
         stack_name: '{{ ProjectName }}-networking'
+        region: ap-southeast-2
       register: output
 
     - debug:
