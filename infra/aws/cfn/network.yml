@@ -122,12 +122,14 @@ Resources:
         Properties:
             AvailabilityZone: ap-southeast-2a
             CidrBlock: !Ref PublicSubnetAZ1CidrBlock
+            MapPublicIpOnLaunch: true
             VpcId: !Ref VPC
     PublicSubnetAZ2:
         Type: AWS::EC2::Subnet
         Properties:
             AvailabilityZone: ap-southeast-2b
             CidrBlock: !Ref PublicSubnetAZ2CidrBlock
+            MapPublicIpOnLaunch: true
             VpcId: !Ref VPC
             
     PublicSubnetAZ1ToPublicRouteTableAssociation:
