@@ -73,7 +73,7 @@ Resources:
       ClusterName: !Ref Cluster
       ForceUpdateEnabled: true
       InstanceTypes: 
-        - t2.micro
+        - t3.micro
       NodegroupName: !Sub "${ProjectName}-${Environment}-Nodegroup"
       NodeRole: !GetAtt NodeGroupIamRole.Arn
       RemoteAccess: 

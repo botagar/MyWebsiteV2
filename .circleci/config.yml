@@ -49,14 +49,14 @@ jobs:
       - run: sh control.sh -a create -p my-website -e dev
 
 workflows:
-  infra:
-    jobs:
-      - create-infra:
-          context:
-            - AWS
-  # node-tests:
+  # infra:
   #   jobs:
-  #     - build-app
+  #     - create-infra:
+  #         context:
+  #           - AWS
+  node-tests:
+    jobs:
+      - build-app
 
   # docker:
   #   jobs:
