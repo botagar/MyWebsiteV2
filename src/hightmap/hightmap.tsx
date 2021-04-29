@@ -1,12 +1,15 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react"
 import SimplexNoise from "simplex-noise"
 import styled from "styled-components"
 import { useWindowSize } from "./useWindowSize";
 
 const HightMap = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [context, setContext] = React.useState<CanvasRenderingContext2D | null>(null);
+  const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
+  const [zHeight, setZHeight] = useState<number>(0)
+  const animationRef = useRef<number>(0);
   const windowSize = useWindowSize()
+  let z = 0
 
   var simplex = new SimplexNoise('SeedVal') // TODO: Set this up in a useMemo
   const zoomLevel = 200
@@ -21,14 +24,14 @@ const HightMap = () => {
     }
   }, [canvasRef]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!!!context) return;
-    
+
     const {width, height} = windowSize
     const heightmap = new Array(width*height).fill(0)
-    for (let i=0; i < width; i++) {
-      for (let j=0; j < height; j++) {
-        heightmap[i*width + j] = simplex.noise2D(i/zoomLevel, j/zoomLevel) * 255
+    for (let i=0; i < height; i++) {
+      for (let j=0; j < width; j++) {
+        heightmap[i*width + j] = (simplex.noise3D(i/zoomLevel, j/zoomLevel, zHeight) + 0.5) * 255
       }
     }
 
@@ -43,10 +46,41 @@ const HightMap = () => {
       data[i + 2] = val;
       data[i + 3] = 255;
     }
-    console.log('dbg', data.length/4, width,height,width*height,windowSize.width,windowSize.height, heightmap.length, data.length)
     context.putImageData(imgData,0,0);
-
   },[context, windowSize])
+
+  useEffect(() =>{
+    if (!!!context) return
+
+    animationRef.current = requestAnimationFrame(riseUpZLevel);
+    return () => cancelAnimationFrame(animationRef.current);
+  }, [context])
+  
+  const riseUpZLevel = () => {
+    setZHeight(prevZHeight => prevZHeight + 0.01);
+    z+= 0.01;
+    const {width, height} = windowSize
+    const heightmap = new Array(width*height).fill(0)
+    for (let i=0; i < height; i++) {
+      for (let j=0; j < width; j++) {
+        heightmap[i*width + j] = (simplex.noise3D(i/zoomLevel, j/zoomLevel, z) + 0.5) * 255
+      }
+    }
+
+    const imgData = context.getImageData(0, 0, width, height);
+    const data = imgData.data;
+    
+    let hmIndex = 0;
+    for(let i = 0; i < data.length; i += 4) {
+      const val = heightmap[hmIndex++]
+      data[i] = val;
+      data[i + 1] = val;
+      data[i + 2] = val;
+      data[i + 3] = 255;
+    }
+    context.putImageData(imgData,0,0);
+    requestAnimationFrame(riseUpZLevel);
+  }
 
   return (
     <Canvas width={windowSize.width} height={windowSize.height} id="hightmap-canvas" ref={canvasRef} />
