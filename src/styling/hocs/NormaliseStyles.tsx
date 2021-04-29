@@ -1,6 +1,9 @@
-import { createGlobalStyle } from 'styled-components'
+import React from "react"
+import { createGlobalStyle } from "styled-components"
 
-const ResetCSS = createGlobalStyle`
+const NormaliseStyles: React.FC = ({ children }) => {
+
+    const ResetCSS = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -50,4 +53,12 @@ table {
 }
 `
 
-export default ResetCSS
+    return (
+        <>
+            <ResetCSS />
+            { children }
+        </>
+    )
+}
+
+export { NormaliseStyles }

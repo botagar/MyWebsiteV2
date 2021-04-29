@@ -2,14 +2,13 @@ import React from 'react'
 import { render } from 'react-dom'
 
 import App from './App'
-import ResetCSS from './RestCSS';
+import { NormaliseStyles } from './styling/hocs/NormaliseStyles';
 
 const renderApp = () => {
   render((
-    <>
-      <ResetCSS />
+    <NormaliseStyles>
       <App />
-    </>
+    </NormaliseStyles>
   ), document.getElementById('app'))
 }
 
