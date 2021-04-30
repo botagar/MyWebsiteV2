@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { HightMap } from './hightmap/hightmap';
 
 const App: FC = () => (
@@ -11,7 +11,6 @@ const App: FC = () => (
 
 export default App;
 
-
 const Container = styled.div`
   text-align: center;
-`
+`;

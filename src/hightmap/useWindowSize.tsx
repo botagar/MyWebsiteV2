@@ -1,6 +1,6 @@
 // Code based on https://usehooks.com/useWindowSize/
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 interface WindowSize {
   width: number | undefined;
@@ -19,16 +19,16 @@ const useWindowSize = (): WindowSize => {
         width: window.innerWidth,
         height: window.innerHeight,
       });
-    }
+    };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     handleResize();
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return windowSize;
-}
+};
 
-export { WindowSize, useWindowSize }
+export { WindowSize, useWindowSize };
