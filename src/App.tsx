@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { HightMap } from './hightmap/hightmap';
+import { HightMap } from './hightmap';
 
 const App: FC = () => (
   <Container>
