@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import SimplexNoise from 'simplex-noise';
 import styled from 'styled-components';
-import { useWindowSize } from './useWindowSize';
+import { useWindowSize } from '../common/hooks/useWindowSize';
 
 const HightMap = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
