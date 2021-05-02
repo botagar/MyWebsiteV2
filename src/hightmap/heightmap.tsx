@@ -25,13 +25,13 @@ const HightMap = () => {
   }, [canvasRef]);
 
   useLayoutEffect(() => {
-    if (!!!context) return;
+    if (!context) return;
 
     drawHeightMap(zh);
   }, [context, windowSize]);
 
   useEffect(() => {
-    if (!!!context) return;
+    if (!context) return;
 
     animationRef.current = requestAnimationFrame(riseUpZLevelAndDraw);
     return () => cancelAnimationFrame(animationRef.current);
@@ -41,7 +41,7 @@ const HightMap = () => {
     return scalingFn((simplex.noise3D(x, y, z) + 0.5) * 255);
   };
 
-  const drawHeightMap = (zLevel: number = 0) => {
+  const drawHeightMap = (zLevel = 0) => {
     const { width, height } = windowSize;
     for (let i = 0; i < height; i++) {
       for (let j = 0; j < width; j++) {
