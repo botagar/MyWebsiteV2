@@ -22,7 +22,7 @@ module.exports = {
 
   devServer: {
     static: [
-      path.resolve(__dirname, 'dist'),
+      DIST
     ],
     compress: true,
     port: 9000,
@@ -60,7 +60,10 @@ module.exports = {
             }
           },
         ]
-      }
+      },
+      { test: /\.tsx?$/,
+        use: "ts-loader"
+      },
     ]
   },
 
@@ -68,11 +71,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.ids.HashedModuleIdsPlugin(),
     isDev && new webpack.HotModuleReplacementPlugin(),
-    isDev && new ReactRefreshWebpackPlugin({
-      overlay: {
-        sockIntegration: 'wds'
-      }
-    }),
+    isDev && new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({    
       template: path.resolve(__dirname, './src/index.html'),     
       filename: 'index.html',
