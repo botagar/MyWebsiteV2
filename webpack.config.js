@@ -61,9 +61,19 @@ module.exports = {
           },
         ]
       },
-      { test: /\.tsx?$/,
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
         use: "ts-loader"
       },
+      {
+        test: /\.(glsl|vs|fs|vert|frag)$/,
+        exclude: /node_modules/,
+        type: 'asset/resource',
+        generator: {
+          filename: '[name][ext].[hash]'
+        }
+      }
     ]
   },
 

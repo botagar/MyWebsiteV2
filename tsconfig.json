@@ -8,7 +8,7 @@
     "removeComments": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "module": "commonjs"
+    "module": "commonjs",
   },
   "include": ["**/*", "./**/*.d.ts"],
   "exclude": ["**/dist/**"]
