@@ -16,6 +16,8 @@ const sketch = (p: p5) => {
   
     p.draw = () => {
         p.shader(slimeSimeShader);
+        slimeSimeShader.setUniform('time', p.frameCount * 0.01)
+
         p.rect(0,0,p.windowWidth, p.windowHeight);
     }
 
